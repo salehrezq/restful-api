@@ -32,4 +32,18 @@ class PollsController extends Controller
         return response()->json($poll, 201);
     }
 
+    /**
+     * http://localhost:8000/api/polls/1
+     *
+     * Pass the id with the URL
+     * And pass the data to change in a a form data or as json text.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(Poll $poll)
+    {
+        $poll->update(request()->all());
+        return response()->json($poll, 200);
+    }
+
 }
