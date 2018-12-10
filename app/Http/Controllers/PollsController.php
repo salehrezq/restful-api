@@ -46,4 +46,23 @@ class PollsController extends Controller
         return response()->json($poll, 200);
     }
 
+    /**
+     * http://localhost:8000/api/polls/1
+     *
+     * If poll is found at the database; 204 status code
+     * will be returned with the response. If poll is
+     * not found at the database, 404 status code
+     * will be returned with the response.
+     *
+     * @param Poll $poll
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception => No primary key defined on model
+     */
+    public function destroy(Poll $poll)
+    {
+        $poll->delete();
+        // Poll::destroy($poll->id);
+        return response()->json(null, 204);
+    }
+
 }
