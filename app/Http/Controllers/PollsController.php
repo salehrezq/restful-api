@@ -16,7 +16,29 @@ class PollsController extends Controller
     // http://localhost:8000/api/polls/1
     public function show($id)
     {
-        return response()->json(Poll::find($id), 200);
+        /**
+         * The find() method either returns a single model or null {}.
+         * At both cases 200 status code will be returned.
+         */
+//        return response()->json(Poll::find($id), 200);
+
+        /**
+         * findOrFail() and firstOrFail() methods either return a single model
+         * or throw ModelNotFoundException, If you don't catch this exception yourself
+         * Laravel will respond with a 404 page with 404 status code.
+         */
+//        return response()->json(Poll::findOrFail($id), 200);
+
+        /**
+         * Either found and return a model
+         * or return null {} with status code 404 but no 404 page.
+         */
+        $poll = Poll::find($id);
+        if (is_null($poll)) {
+            // null returned {} but no 404 page.
+            return response()->json(null, 404);
+        }
+        return response()->json(Poll::findOrFail($id), 200);
     }
 
     /**
