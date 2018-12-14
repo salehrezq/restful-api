@@ -73,6 +73,14 @@ class PollsController extends Controller
      */
     public function update(Poll $poll)
     {
+        $validator = Validator::make(request()->all(), [
+            'title' => 'required|max:250'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
         $poll->update(request()->all());
         return response()->json($poll, 200);
     }
