@@ -23,3 +23,4 @@ Route::post('/polls', 'PollsController@store');
 // PUT to update/replace a whole resource, PATCH to update part of the resource
 Route::put('/polls/{poll}', 'PollsController@update');
 Route::delete('/polls/{poll}', 'PollsController@destroy');
+Route::any('/errors', 'PollsController@errors');

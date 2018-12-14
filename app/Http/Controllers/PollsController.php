@@ -104,4 +104,11 @@ class PollsController extends Controller
         return response()->json(null, 204);
     }
 
+    // http://localhost:8000/api/errors
+    public function errors()
+    {
+//        return response()->json([], 501);
+        return response()->json(['msg' => 'Payment is required.'], 501);
+    }
+
 }
