@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Poll;
+use App\Http\Resources\Poll as PollResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+
 
 class PollsController extends Controller
 {
@@ -39,7 +41,11 @@ class PollsController extends Controller
             // null returned {} but no 404 page.
             return response()->json(null, 404);
         }
-        return response()->json(Poll::findOrFail($id), 200);
+//        return response()->json(Poll::findOrFail($id), 200);
+
+        // Using a resource:
+        $response = new PollResource(Poll::findOrFail($id), 200);
+        return response()->json($response, 200);
     }
 
     /**
