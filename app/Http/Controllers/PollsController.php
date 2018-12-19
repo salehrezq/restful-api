@@ -117,4 +117,17 @@ class PollsController extends Controller
         return response()->json(['msg' => 'Payment is required.'], 501);
     }
 
+    /**
+     * http://localhost:8000/api/polls/{poll}/questions
+     *
+     * sub-resource: Get all the questions related to a specific poll
+     *
+     * @param Poll $poll
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function questions(Poll $poll)
+    {
+        return response()->json($poll->questions, 200);
+    }
+
 }

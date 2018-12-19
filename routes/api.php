@@ -26,3 +26,7 @@ Route::delete('/polls/{poll}', 'PollsController@destroy');
 Route::any('/errors', 'PollsController@errors');
 
 Route::apiResource('questions', 'QuestionsController');
+
+// sub-resource: get all questions related to a specific poll
+Route::get('polls/{poll}/questions', 'PollsController@questions');
+
