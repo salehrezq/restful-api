@@ -13,7 +13,22 @@ class PollsController extends Controller
     // http://localhost:8000/api/polls
     public function index()
     {
-        return response()->json(Poll::get(), 200);
+//        return response()->json(Poll::get(), 200);
+
+        /**
+         * paginate(1) means one record per page.
+         * http://localhost:8000/api/polls
+         *
+         * Use this URL to access the second page:
+         * http://localhost:8000/api/polls?page=2
+         *
+         * Use this URL to access the third page:
+         * http://localhost:8000/api/polls?page=3
+         *
+         * Laravel response will contain all the meta-data
+         * necessary for you to surf the pages.
+         */
+        return response()->json(Poll::paginate(1), 200);
     }
 
     // http://localhost:8000/api/polls/1
