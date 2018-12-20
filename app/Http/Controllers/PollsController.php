@@ -36,11 +36,11 @@ class PollsController extends Controller
          * Either found and return a model
          * or return null {} with status code 404 but no 404 page.
          */
-        $poll = Poll::find($id);
-        if (is_null($poll)) {
-            // null returned {} but no 404 page.
-            return response()->json(null, 404);
-        }
+//        $poll = Poll::find($id);
+//        if (is_null($poll)) {
+//            // null returned {} but no 404 page.
+//            return response()->json(null, 404);
+//        }
 //        return response()->json(Poll::findOrFail($id), 200);
 
         // Using a resource:
@@ -55,11 +55,22 @@ class PollsController extends Controller
          * questions that list all of the questions for that poll.
          *
          */
+//        $poll = Poll::with('questions')->findOrFail($id);
+//        $response = new PollResource($poll, 200);
+//        return response()->json($response, 200);
+
+        /**
+         * Returning nested data as side-loaded data
+         *
+         * This will get the specified poll and load the questions for that poll
+         * as a side-loaded data; that is both the poll and its related
+         * questions reside at the same top level.
+         */
         $poll = Poll::with('questions')->findOrFail($id);
-        $response = new PollResource($poll, 200);
+        $response['poll'] = $poll;
+        $response['questions'] = $poll->questions;
+//        $response = new PollResource($response, 200);
         return response()->json($response, 200);
-
-
     }
 
     /**
