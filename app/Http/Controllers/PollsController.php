@@ -44,8 +44,22 @@ class PollsController extends Controller
 //        return response()->json(Poll::findOrFail($id), 200);
 
         // Using a resource:
-        $response = new PollResource(Poll::findOrFail($id), 200);
+//        $response = new PollResource(Poll::findOrFail($id), 200);
+//        return response()->json($response, 200);
+
+
+        /**
+         * Returning nested data
+         *
+         * This will get the specified poll with an extra key of
+         * questions that list all of the questions for that poll.
+         *
+         */
+        $poll = Poll::with('questions')->findOrFail($id);
+        $response = new PollResource($poll, 200);
         return response()->json($response, 200);
+
+
     }
 
     /**
