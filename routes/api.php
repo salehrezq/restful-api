@@ -31,3 +31,4 @@ Route::apiResource('questions', 'QuestionsController');
 Route::get('polls/{poll}/questions', 'PollsController@questions');
 
 Route::get('files/get', 'FilesController@show');
+Route::post('files/create', 'FilesController@create');

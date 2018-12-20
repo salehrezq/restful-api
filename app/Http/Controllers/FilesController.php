@@ -16,4 +16,18 @@ class FilesController extends Controller
     {
         return response()->download(storage_path('app\dice.jpg'), 'Lonely dice');
     }
+
+    /**
+     * POST
+     * http://localhost:8000/api/files/create
+     *
+     * Pass the data to this method as a form data.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function create()
+    {
+        $path = request()->file('photo')->store('testing');
+        return response()->json(['path' => $path], 200);
+    }
 }
