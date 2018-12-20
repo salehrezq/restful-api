@@ -30,3 +30,4 @@ Route::apiResource('questions', 'QuestionsController');
 // sub-resource: get all questions related to a specific poll
 Route::get('polls/{poll}/questions', 'PollsController@questions');
 
+Route::get('files/get', 'FilesController@show');
