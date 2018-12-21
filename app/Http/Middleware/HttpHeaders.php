@@ -15,6 +15,9 @@ class HttpHeaders
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        $response = $next($request);
+        $response->header('X-JOBS', 'Come work with us.');
+        return $response;
     }
+
 }
