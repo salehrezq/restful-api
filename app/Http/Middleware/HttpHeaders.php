@@ -13,10 +13,10 @@ class HttpHeaders
      * @param  \Closure $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, string $text = '')
     {
         $response = $next($request);
-        $response->header('X-JOBS', 'Come work with us.');
+        $response->header('X-JOBS', $text);
         return $response;
     }
 
